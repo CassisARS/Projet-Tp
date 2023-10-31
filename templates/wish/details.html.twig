@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des souhaits - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des souhaits</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('wish_show',{'id': 1}) }}">Souhait 1</a> // a modif
+        </li>
+        <li>
+            <a href="{{ path('serie_show',{'id': 2}) }}">Souhait 2</a> // a modif
+        </li>
+        <li>
+            <a href="{{ path('serie_show',{'id': 3}) }}">Souhait 3</a> // a modif
+        </li>
+    </ul>
+
+
+{% endblock %}

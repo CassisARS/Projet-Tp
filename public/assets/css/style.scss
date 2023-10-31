@@ -1,0 +1,37 @@
+:root {
+  --color-primary: #a5a58d;
+  --color-secondary: #eddcd2;
+  --color-light: #fff1e6;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--color-light);
+
+
+}
+
+body> main{
+  flex-grow: 1;
+}
+.container{
+  width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+ }
+
+.site-header . logo img {
+  height: 50px;
+}
+
+.site-header{
+  background-color:var(--color-primary);
+}
+
+.site-footer{
+  padding:1rem 0;
+  background-color:var(--color-secondary);
+  text-align: center;
+}

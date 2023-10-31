@@ -14,6 +14,18 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+    {% block header %}
+        {% include'fragments/header.html.twig' %}
+    {% endblock %}
+
+    <main>
+    {% block body %}{% endblock %}
+    </main>
+
+    {% include 'fragments/footer.html.twig' %}
+
+
+
     </body>
 </html>
