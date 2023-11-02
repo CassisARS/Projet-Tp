@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>A propos</h1>
+    <p>Lorem ipsum...</p>
+
+    <h2>Créateurs du site</h2>
+    <sections>
+
+    {% for personne in obj %}
+        <img src="{{ personne.picture }}" alt="{{ personne.firstname ~ ' ' ~ personne.lastname}}">
+        <article>
+            <h3>{{ personne.firstname }} {{ personne.lastname }}
+                {% if personne.firstname == 'Fabien' %}
+                     ❤
+                {% endif %}</h3>
+            <time><strong>Date de naissance : </strong>{{ personne.dateOfBirth | date('d/m/Y')}}</time>
+            <p><strong>Créateur de : </strong>{{ personne.creatorOf }}</p>
+
+            <p><strong>Description</strong> : {{ personne.description }}</p>
+        </article>
+    {% endfor %}
+
+    </sections>
+
+
+{% endblock %}
+
