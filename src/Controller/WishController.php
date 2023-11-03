@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Wish;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,18 +18,24 @@ class WishController extends AbstractController
     /**
      * @Route("/", name="wish_index")
      */
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        // TODO: récupérer la liste des souhaits en base de données
-        return $this->render('wish/index.html.twig');
+
+        $wishRepository = $entityManager->getRepository(Wish::class);
+        $wishes = $wishRepository->findBy(['isPublished' => true], ['dateCreated' => 'DESC']);
+
+
+
+        return $this->render('wish/index.html.twig', [
+            'wishes'=>$wishes]);
     }
 
     /**
      * @Route("/{id}", name="wish_details")
      */
-    public function details(int $id): Response
+    public function details(Wish $wish): Response
     {
 
-        return $this->render('wish/details.html.twig');
+        return $this->render('wish/details.html.twig', ['wish' => $wish]);
     }
 }
