@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Serie;
 use App\Entity\Wish;
+use App\Form\SerieType;
+use App\Form\WishType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,6 +34,35 @@ class WishController extends AbstractController
             'wishes'=>$wishes]);
     }
 
+
+
+    /**
+     * @Route("/newWish", name="wish_newWish")
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $wish= new Wish();
+
+        $wishForm = $this->createForm(WishType::class, $wish);
+
+        $wishForm->handleRequest($request);
+
+        if($wishForm->isSubmitted() && $wishForm->isValid()){
+            $entityManager->persist($wish);
+            $entityManager->flush();
+            $this->addFlash( 'success', 'le souhait est bien enregistrée');
+
+            return $this->redirectToRoute( 'wish_details', ['id'=> $wish->getId()]);
+
+        }
+
+        return $this->render('wish/newWish.html.twig', [
+            'wishForm' => $wishForm->createView()
+        ]);
+
+
+    }
+
     /**
      * @Route("/{id}", name="wish_details")
      */
@@ -38,4 +71,5 @@ class WishController extends AbstractController
 
         return $this->render('wish/details.html.twig', ['wish' => $wish]);
     }
+    
 }

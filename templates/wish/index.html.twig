@@ -11,7 +11,7 @@
             {% for wish in wishes %}
                 <article>
                     <a href="{{ path('wish_details', {'id': wish.id}) }}">
-                        {{ wish.title }}
+                        {{ wish.title }} | {{ wish.category }}<!-- wish category marche car function toString, sinon il aurait fallu mettre wish.category.name  -->
                     </a>
                 </article>
             {% endfor %}

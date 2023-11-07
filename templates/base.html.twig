@@ -14,17 +14,24 @@
         {% endblock %}
     </head>
     <body>
-
+    <div class="container">
     {% block header %}
         {% include'fragments/header.html.twig' %}
     {% endblock %}
 
     <main>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <p class="flash flash-{{ label }}">{{ message }}</p>
+            {% endfor %}
+        {% endfor %}
+
     {% block body %}{% endblock %}
     </main>
 
     {% include 'fragments/footer.html.twig' %}
-
+    </div>
 
 
     </body>
