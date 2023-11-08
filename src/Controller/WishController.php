@@ -7,6 +7,7 @@ use App\Entity\Wish;
 use App\Form\SerieType;
 use App\Form\WishType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,10 +39,14 @@ class WishController extends AbstractController
 
     /**
      * @Route("/newWish", name="wish_newWish")
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+
+        $username= $this->getUser()->getUsername();
         $wish= new Wish();
+        $wish->setAuthor($username);
 
         $wishForm = $this->createForm(WishType::class, $wish);
 

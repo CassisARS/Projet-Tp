@@ -7,10 +7,8 @@
         </div>
 
     <nav>
-        <h1>
-            <img src="/public/{{ asset('assets/images/favicon.png') }}" alt="">
-            Bucket-List
-        </h1>
+        <img src="/public/{{ asset('assets/images/favicon.png') }}" alt="">
+        <h1>Bucket-List</h1>
         <ul>
             <li>
                 <a href="{{ path('homepage') }}">Home </a>
@@ -26,7 +24,15 @@
             <li>
                 <a href="{{ path('wish_newWish') }}">Ajout d'idée </a>
             </li>
-
+            <li>
+                <a href="{{ path('app_register') }}">Register </a>
+            </li>
+            <li>
+                <a href="{{ path('app_login') }}">Login</a>
+            </li>
+            <li>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </li>
         </ul>
     </nav>
 </header>
